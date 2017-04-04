@@ -1,0 +1,63 @@
+include _assets/bemto/bemto.pug
+- set_bemto_settings({ modifier: "--" })
+
+include controls/controls.pug
+include tables/tables.pug
+
+doctype html
+html(lang="ru")
+	head
+		title ebola test
+		meta(charset="utf-8")
+
+		meta(content="igor chernobay" name="author")
+		meta(content="ebola test" name="description")
+
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(name="HandheldFriendly" content="true")
+		meta(name="format-detection", content="telephone=no")
+		meta(content="IE=edge" http-equiv="X-UA-Compatible")
+
+		//-link(rel="shortcut icon", href="img/favicon/favicon.png", type="image/x-icon")
+		//-link(rel="apple-touch-icon", href="img/favicon/apple-touch-icon.png")
+		//-link(rel="apple-touch-icon", sizes="72x72", href="img/favicon/apple-touch-icon-72x72.png")
+		//-link(rel="apple-touch-icon", sizes="114x114", href="img/favicon/apple-touch-icon-114x114.png")
+		//-link(rel="apple-touch-icon", sizes="144x144", href="img/favicon/apple-touch-icon-144x144.png")
+		//-link(rel="apple-touch-icon", sizes="152x152", href="img/favicon/apple-touch-icon-152x152.png")
+		//-link(rel="apple-touch-icon", sizes="180x180", href="img/favicon/apple-touch-icon-180x180.png")
+
+		// build:css css/vendor.css
+		link(rel="stylesheet", href="libs/bootstrap/dist/css/bootstrap.min.css")
+		// endbuild
+		// build:css css/main.css
+		link(rel="stylesheet", href="css/main.css")
+		// endbuild
+
+	+b.BODY.page
+		+e.DIV.wrap(class="container-fluid")
+			+e.DIV.row
+				+e.DIV.col(class="col-xs-2")
+					+controls([
+						{"desc":"lorem"},
+						{"desc":"lorem"},
+						{"desc":"lorem"},
+						{"desc":"lorem"},
+						{"desc":"lorem"}
+					])
+				+e.DIV.col(class="col-xs-10")
+					+tables()
+
+
+		// build:js js/vendor.js
+		script( src="libs/angular/angular.min.js" )
+		script( src="libs/angular-ui-router/release/angular-ui-router.min.js" )
+		//-script( src="" )
+		//-script( src="" )
+		//-script( src="" )
+		//-script( src="" )
+		// endbuild
+
+
+		// build:js js/main.js
+		//-script( src="js/main.js")
+		// endbuild

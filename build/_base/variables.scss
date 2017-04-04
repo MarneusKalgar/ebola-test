@@ -1,0 +1,36 @@
+/***********************BASE***********************/
+$base-bg-color                  : #fff;
+$base-text-color                : #111111;
+$base-font-family               : 'Museo Sans Cyrl', Arial, sans-serif;
+$base-font-size                 : 1rem;
+$base-font-weight               : 300;
+$base-line-height               : 1.5;
+//$base-letter-spacing			:.01rem
+
+$base-color-red                 : #ff2f26;
+$base-color-grey                : #ccc;
+$base-color-white               : #fff;
+
+$base-wrap-element-width        : 71.25rem;
+$base-element-padding           : 2.8em;
+
+
+/***********************HEADINGS***********************/
+$heading-color                  : #ff2f26;
+$heading-font-family            : 'Museo Sans Cyrl', Arial, Helvetica, sans-serif;
+$heading-font-size              : 3.75rem;
+$heading2-font-size             : 3rem;
+$heading3-font-size             : 1.875rem;
+$heading4-font-size             : 1.5rem;
+$heading5-font-size             : 1.125rem;
+$heading-font-weight            : bold;
+$heading-line-height            : 1.3;
+$heading-letter-spacing         : .01em;
+
+
+/***********************MEDIA QUERIES***********************/
+$media-lg                       : 1280px;
+$media-md                       : 960px;
+$media-sm                       : 780px;
+$media-xs                       : 600px;
+$media-xxs						: 480px;

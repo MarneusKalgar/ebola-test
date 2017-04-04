@@ -1,0 +1,30 @@
+mixin tables
+	+b.SECTION.tables
+
+		+e.UL.tabs
+			+e.tab-item(class="--active") Клиенты
+			+e.tab-item Новости
+
+		+e.DIV.actions
+			+e.BUTTON.btn(type="button")
+			+e.BUTTON.btn(type="button")
+
+		+e.DIV.container
+			+e.DIV.item
+				+e.UL.info-list
+					+e.info-item Все категории
+					+e.info-item(class="--isOpened") Еще категория
+						+e.UL.info-sublist
+							+e.info-subitem Подкатегория
+							+e.info-subitem Подкатегория
+				+e.TABLE.table
+					+e.TR.row
+						+e.TH.head Фамилия
+						+e.TH.head Имя
+						+e.TH.head Отчество
+						+e.TH.head Скидка
+					+e.TR.row
+						+e.TD.filter
+						+e.TD.filter
+						+e.TD.filter
+						+e.TD.filter

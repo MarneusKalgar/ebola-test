@@ -1,0 +1,7 @@
+mixin controls(items)
+	+b.DIV.controls
+		+e.UL.list
+			each item in items
+				+e.item
+					+e.SVG.icon
+					+e.P.desc=item.desc
