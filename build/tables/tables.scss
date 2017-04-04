@@ -1,0 +1,189 @@
+/******************TABLES*********************/
+.tables {
+	box-sizing: border-box;
+	height: 100%;
+	padding: 1% 1em 0;
+	background: $base-color-grey;
+
+		//tabs
+	&__tabs {
+		width: 100%;
+		height: 5%;
+		min-height: 3em;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		display: flex;
+		border-bottom: 2px solid $base-text-color;
+	}
+
+	&__tab-item {
+		position: relative;
+		z-index: 50;
+		height: 100%;
+		line-height: 3em;
+		padding: 0 1em;
+		margin-right: 1em;
+		background: $base-color-white;
+		cursor: pointer;
+		&::after {
+			position: absolute;
+			content: "";
+			left: 100%;
+			top: 0;
+			width: 0;
+			height: 0;
+			border-bottom: 3em solid $base-color-white;
+			border-right: 2em solid transparent;
+		}
+
+		&--isActive {
+			background: $base-text-color;
+			color: $base-color-white;
+			z-index: 100;
+			&::after {
+				border-bottom-color: $base-text-color;
+			}
+		}
+	}
+
+		//actions
+	&__actions {
+		width: 100%;
+		height: 3%;
+		min-height: 2em;
+		display: flex;
+		padding: .5em 0;
+		background: $base-color-white;
+	}
+
+	&__btn {
+		position: relative;
+		display: block;
+		box-sizing: border-box;
+		text-decoration: none;
+		text-transform: uppercase;
+		margin: 0;
+		padding: 0;
+		border: none;
+		outline: none;
+		background: rgba(0, 0, 0, 0);
+		cursor: pointer;
+		-webkit-appearance: none;
+
+		width: 2em;
+		height: 2em;
+
+		&:first-child {
+			border-right: 1px solid $base-color-grey;
+		}
+	}
+
+	&__icon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 1em;
+		height: 1em;
+		transform: translate(-50%, -50%);
+		background: $base-text-color;
+	}
+
+		//container
+	&__container {
+		height: 85%;
+		//min-height: 20em;
+		width: 100%;
+		margin-top: 1%;
+		align-self: stretch;
+	}
+
+	&__item {
+		height: 100%;
+		padding: 0;
+	}
+
+	&__wrapper {
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
+	}
+
+	&__col {
+		box-sizing: border-box;
+		//height: 100%;
+		background: $base-color-white;
+
+		&--info {
+			position: relative;
+			width: 28%;
+			padding: 1em 0;
+
+			&::after {
+				position: absolute;
+				content: "";
+				top: 0;
+				left: 103%;
+				width: 1px;
+				height: 100%;
+				border-right: 1px solid $base-text-color;
+			}
+		}
+
+		&--table {
+			width: 70%;
+			overflow-y: auto;
+		}
+	}
+
+	&__info-list {
+		margin: 0;
+		padding: 0 1em;
+		list-style-type: none;
+	}
+
+
+	&__table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	
+	&__row {
+		
+		&--head {
+			background: $base-color-grey;
+		}
+	}
+
+	&__filter {
+		padding: 0 .5em;
+	}
+
+	&__input {
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
+	}
+
+		//pagination
+	&__pagination {
+		padding: 0;
+		margin: 1.5em 0 0;
+		list-style-type: none;
+		display: flex;
+		justify-content: center;
+		font-size: $base-font-size * 1.25;
+		font-weight: bold;
+	}
+
+	&__pagination-item {
+		padding: 1em;
+		cursor: pointer;
+		transition: all .3s ease;
+		&:hover {
+			color: lighten($base-text-color, 30%);
+		}
+	}
+
+}

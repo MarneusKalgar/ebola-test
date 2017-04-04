@@ -1,8 +1,9 @@
 .page {
 	position: relative;
-	min-height: 20rem;
-	min-width: 19rem;
-	max-width: 120rem;
+	//min-height: 20rem;
+	min-height: 100vh;
+	min-width: 305px;
+	max-width: 1920px;
 	margin: 0 auto;
 	padding: 0;
 	font-weight: normal;
@@ -16,21 +17,24 @@
 	&__wrap {
 		position: relative;
 		box-sizing: border-box;
+		width: 100%;
+		min-height: 100%;
 		margin: 0;
-		overflow-x: hidden;
+		display: flex;
+		justify-content: flex-start;
+		align-items: stretch;
+		overflow: hidden;
 	}
 
-	&__scrollTop {
-		position: absolute;
-		bottom: -1em;
-		right: 3em;
-		z-index: 1000;
+	&__col {
+		box-sizing: border-box;
 
-		&--isContacts {
-			z-index: -1000;
-			display: none;
-			opacity: 0;
-			visibility: hidden;
+		&--tables {
+			flex: 1;
+		}
+
+		&--controls {
+			min-width: 4em;
 		}
 	}
 

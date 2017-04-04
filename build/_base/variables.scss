@@ -8,7 +8,7 @@ $base-line-height               : 1.5;
 //$base-letter-spacing			:.01rem
 
 $base-color-red                 : #ff2f26;
-$base-color-grey                : #ccc;
+$base-color-grey                : lighten(#ccc, 10%);
 $base-color-white               : #fff;
 
 $base-wrap-element-width        : 71.25rem;

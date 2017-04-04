@@ -9,106 +9,132 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="format-detection" content="telephone=no">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <link rel="shortcut icon" href="img/favicon/favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
     <!-- build:css css/vendor.css-->
-    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
     <!-- endbuild-->
     <!-- build:css css/main.css-->
     <link rel="stylesheet" href="css/main.css">
     <!-- endbuild-->
   </head>
   <body class="page">
-    <div class="page__wrap container-fluid">
-      <div class="page__row">
-        <div class="page__col col-xs-2">
-          <div class="controls">
-            <ul class="controls__list">
-              <li class="controls__item">
-                <svg class="controls__icon">
-                </svg>
-                <p class="controls__desc">lorem
-                </p>
-              </li>
-              <li class="controls__item">
-                <svg class="controls__icon">
-                </svg>
-                <p class="controls__desc">lorem
-                </p>
-              </li>
-              <li class="controls__item">
-                <svg class="controls__icon">
-                </svg>
-                <p class="controls__desc">lorem
-                </p>
-              </li>
-              <li class="controls__item">
-                <svg class="controls__icon">
-                </svg>
-                <p class="controls__desc">lorem
-                </p>
-              </li>
-              <li class="controls__item">
-                <svg class="controls__icon">
-                </svg>
-                <p class="controls__desc">lorem
-                </p>
-              </li>
-            </ul>
-          </div>
+    <div class="page__wrap">
+      <div class="page__col page__col--controls">
+        <div class="controls">
+          <ul class="controls__list">
+            <li class="controls__item">
+              <svg class="controls__icon">
+              </svg>
+              <p class="controls__desc">lorem
+              </p>
+            </li>
+            <li class="controls__item">
+              <svg class="controls__icon">
+              </svg>
+              <p class="controls__desc">lorem
+              </p>
+            </li>
+            <li class="controls__item">
+              <svg class="controls__icon">
+              </svg>
+              <p class="controls__desc">lorem
+              </p>
+            </li>
+            <li class="controls__item">
+              <svg class="controls__icon">
+              </svg>
+              <p class="controls__desc">lorem
+              </p>
+            </li>
+            <li class="controls__item">
+              <svg class="controls__icon">
+              </svg>
+              <p class="controls__desc">lorem
+              </p>
+            </li>
+          </ul>
         </div>
-        <div class="page__col col-xs-10">
-          <section class="tables">
-            <ul class="tables__tabs">
-              <li class="tables__tab-item tables__tab-item--active">Клиенты
-              </li>
-              <li class="tables__tab-item">Новости
-              </li>
-            </ul>
-            <div class="tables__actions">
-              <button class="tables__btn" type="button">
-              </button>
-              <button class="tables__btn" type="button">
-              </button>
-            </div>
-            <div class="tables__container">
-              <div class="tables__item">
-                <ul class="tables__info-list">
-                  <li class="tables__info-item">Все категории
-                  </li>
-                  <li class="tables__info-item tables__info-item--isOpened">Еще категория
-                    <ul class="tables__info-sublist">
-                      <li class="tables__info-subitem">Подкатегория
-                      </li>
-                      <li class="tables__info-subitem">Подкатегория
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                <table class="tables__table">
-                  <tr class="tables__row">
-                    <th class="tables__head">Фамилия
-                    </th>
-                    <th class="tables__head">Имя
-                    </th>
-                    <th class="tables__head">Отчество
-                    </th>
-                    <th class="tables__head">Скидка
-                    </th>
-                  </tr>
-                  <tr class="tables__row">
-                    <td class="tables__filter">
-                    </td>
-                    <td class="tables__filter">
-                    </td>
-                    <td class="tables__filter">
-                    </td>
-                    <td class="tables__filter">
-                    </td>
-                  </tr>
-                </table>
+      </div>
+      <div class="page__col page__col--tables">
+        <section class="tables">
+          <ul class="tables__tabs">
+            <li class="tables__tab-item tables__tab-item--isActive">Клиенты
+            </li>
+            <li class="tables__tab-item">Новости
+            </li>
+          </ul>
+          <div class="tables__actions">
+            <button class="tables__btn" type="button">
+              <svg class="tables__icon">
+              </svg>
+            </button>
+            <button class="tables__btn" type="button">
+              <svg class="tables__icon">
+              </svg>
+            </button>
+          </div>
+          <div class="tables__container">
+            <div class="tables__item container-fluid">
+              <div class="tables__wrapper row">
+                <div class="tables__col tables__col--info col-xs-3">
+                  <ul class="tables__info-list">
+                    <li class="tables__info-item">Все категории
+                    </li>
+                    <li class="tables__info-item tables__info-item--isOpened">Еще категория
+                      <ul class="tables__info-sublist">
+                        <li class="tables__info-subitem">Подкатегория
+                        </li>
+                        <li class="tables__info-subitem">Подкатегория
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tables__col tables__col--table col-xs-9">
+                  <table class="tables__table table-responsive">
+                    <tr class="tables__row tables__row--head">
+                      <th class="tables__head">Фамилия
+                      </th>
+                      <th class="tables__head">Имя
+                      </th>
+                      <th class="tables__head">Отчество
+                      </th>
+                      <th class="tables__head">Скидка
+                      </th>
+                    </tr>
+                    <tr class="tables__row">
+                      <td class="tables__filter"><input class="tables__input" type="text"/>
+                      </td>
+                      <td class="tables__filter"><input class="tables__input" type="text"/>
+                      </td>
+                      <td class="tables__filter"><input class="tables__input" type="text"/>
+                      </td>
+                      <td class="tables__filter"><input class="tables__input" type="text"/>
+                      </td>
+                    </tr>
+                  </table>
+                  <ul class="tables__pagination">
+                    <li class="tables__pagination-item">1
+                    </li>
+                    <li class="tables__pagination-item">2
+                    </li>
+                    <li class="tables__pagination-item">3
+                    </li>
+                    <li class="tables__pagination-item">4
+                    </li>
+                    <li class="tables__pagination-item">5
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </div>
     </div>
     <!-- build:js js/vendor.js-->

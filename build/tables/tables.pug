@@ -2,29 +2,41 @@ mixin tables
 	+b.SECTION.tables
 
 		+e.UL.tabs
-			+e.tab-item(class="--active") Клиенты
+			+e.tab-item(class="--isActive") Клиенты
 			+e.tab-item Новости
 
 		+e.DIV.actions
 			+e.BUTTON.btn(type="button")
+				+e.SVG.icon
 			+e.BUTTON.btn(type="button")
+				+e.SVG.icon
 
 		+e.DIV.container
-			+e.DIV.item
-				+e.UL.info-list
-					+e.info-item Все категории
-					+e.info-item(class="--isOpened") Еще категория
-						+e.UL.info-sublist
-							+e.info-subitem Подкатегория
-							+e.info-subitem Подкатегория
-				+e.TABLE.table
-					+e.TR.row
-						+e.TH.head Фамилия
-						+e.TH.head Имя
-						+e.TH.head Отчество
-						+e.TH.head Скидка
-					+e.TR.row
-						+e.TD.filter
-						+e.TD.filter
-						+e.TD.filter
-						+e.TD.filter
+			+e.DIV.item(class="container-fluid")
+				+e.DIV.wrapper(class="row")
+					+e.DIV.col(class="--info col-xs-3")
+						+e.UL.info-list
+							+e.info-item Все категории
+							+e.info-item(class="--isOpened") Еще категория
+								+e.UL.info-sublist
+									+e.info-subitem Подкатегория
+									+e.info-subitem Подкатегория
+					+e.DIV.col(class="--table col-xs-9")
+						+e.TABLE.table(class="table-responsive")
+							+e.TR.row(class="--head")
+								+e.TH.head Фамилия
+								+e.TH.head Имя
+								+e.TH.head Отчество
+								+e.TH.head Скидка
+							+e.TR.row
+								+e.TD.filter
+									+e.INPUT.input(type="text")
+								+e.TD.filter
+									+e.INPUT.input(type="text")
+								+e.TD.filter
+									+e.INPUT.input(type="text")
+								+e.TD.filter
+									+e.INPUT.input(type="text")
+						+e.UL.pagination
+							each i in [1,2,3,4,5]
+								+e.pagination-item= i
