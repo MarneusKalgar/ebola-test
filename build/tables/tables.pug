@@ -12,31 +12,91 @@ mixin tables
 				+e.SVG.icon
 
 		+e.DIV.container
-			+e.DIV.item(class="container-fluid")
+			+e.DIV.item
 				+e.DIV.wrapper(class="row")
-					+e.DIV.col(class="--info col-xs-3")
+					+e.DIV.col(class="--info")
 						+e.UL.info-list
 							+e.info-item Все категории
 							+e.info-item(class="--isOpened") Еще категория
 								+e.UL.info-sublist
 									+e.info-subitem Подкатегория
 									+e.info-subitem Подкатегория
-					+e.DIV.col(class="--table col-xs-9")
-						+e.TABLE.table(class="table-responsive")
-							+e.TR.row(class="--head")
-								+e.TH.head Фамилия
-								+e.TH.head Имя
-								+e.TH.head Отчество
-								+e.TH.head Скидка
-							+e.TR.row
-								+e.TD.filter
-									+e.INPUT.input(type="text")
-								+e.TD.filter
-									+e.INPUT.input(type="text")
-								+e.TD.filter
-									+e.INPUT.input(type="text")
-								+e.TD.filter
-									+e.INPUT.input(type="text")
-						+e.UL.pagination
-							each i in [1,2,3,4,5]
-								+e.pagination-item= i
+					+e.DIV.col(class="--table")
+						+e.TABLE.table
+							+e.THEAD.table-header
+								+e.TR.row(class="--head")
+									+e.TH.head(ng-click="renderUsers.sortType ='last_name'; renderUsers.sortDir = !renderUsers.sortDir") Фамилия
+										+e.SPAN.icon-caret(class="--up", ng-show !="renderUsers.sortType == 'last_name' && renderUsers.sortDir")
+										+e.SPAN.icon-caret(class="--down", ng-show !="renderUsers.sortType == 'last_name' && !renderUsers.sortDir")
+									+e.TH.head(ng-click="renderUsers.sortType ='first_name'; renderUsers.sortDir = !renderUsers.sortDir") Имя
+										+e.SPAN.icon-caret(class="--up", ng-show !="renderUsers.sortType == 'first_name' && renderUsers.sortDir")
+										+e.SPAN.icon-caret(class="--down", ng-show !="renderUsers.sortType == 'first_name' && !renderUsers.sortDir")
+									+e.TH.head(ng-click="renderUsers.sortType ='patronymic_name'; renderUsers.sortDir = !renderUsers.sortDir") Отчество
+										+e.SPAN.icon-caret(class="--up", ng-show !="renderUsers.sortType == 'patronymic_name' && renderUsers.sortDir")
+										+e.SPAN.icon-caret(class="--down", ng-show !="renderUsers.sortType == 'patronymic_name' && !renderUsers.sortDir")
+									+e.TH.head(ng-click="renderUsers.sortType ='discount'; renderUsers.sortDir = !renderUsers.sortDir") Скидка
+										+e.SPAN.icon-caret(class="--up", ng-show !="renderUsers.sortType == 'discount' && renderUsers.sortDir")
+										+e.SPAN.icon-caret(class="--down", ng-show !="renderUsers.sortType == 'discount' && !renderUsers.sortDir")
+								+e.TR.row
+									+e.TD.filter
+										+e.INPUT.input(type="text",
+											ng-model="renderUsers.searchLastName",
+											ng-focus="renderUsers.count = renderUsers.count + 1; renderUsers.doSearch()",
+											ng-init="renderUsers.count = 0",
+											ng-blur="renderUsers.count = 0; renderUsers.searchLastName=''"
+										)
+									+e.TD.filter
+										+e.INPUT.input(type="text",
+											ng-model="renderUsers.searchFirstName"
+											ng-focus="renderUsers.count = renderUsers.count + 1; renderUsers.doSearch(renderUsers.count)",
+											ng-init="renderUsers.count = 0",
+											ng-blur="renderUsers.count = 0; renderUsers.searchFirstName=''"
+										)
+									+e.TD.filter
+										+e.INPUT.input(type="text",
+											ng-model="renderUsers.searchPatronymicName",
+											ng-focus="renderUsers.count = renderUsers.count + 1; renderUsers.doSearch()",
+											ng-init="renderUsers.count = 0",
+											ng-blur="renderUsers.count = 0; renderUsers.searchPatronymicName=''"
+										)
+									+e.TD.filter
+										+e.INPUT.input(type="text",
+											ng-model="renderUsers.searchDiscount",
+											ng-focus="renderUsers.count = renderUsers.count + 1; renderUsers.doSearch()",
+											ng-init="renderUsers.count = 0",
+											ng-blur="renderUsers.count = 0; renderUsers.searchDiscount=''"
+										)
+							+e.TBODY.table-body
+								//this set represents users array based on page number
+								+e.TR.row(class="--cell",
+									ng-repeat="u in renderUsers.users | orderBy: renderUsers.sortType: renderUsers.sortDir",
+									ng-show="!renderUsers.count"
+								)
+									+e.TD.cell {{u.last_name}}
+									+e.TD.cell {{u.first_name}}
+									+e.TD.cell {{u.patronymic_name}}
+									+e.TD.cell {{u.discount}}%
+
+								//this set represents allUsers array
+								+e.TR.row(class="--cell",
+									ng-repeat="user in renderUsers.allUsers | filter: {last_name: renderUsers.searchLastName, first_name: renderUsers.searchFirstName, patronymic_name: renderUsers.searchPatronymicName, discount: renderUsers.searchDiscount}",
+									ng-show="renderUsers.count"
+								)
+									+e.TD.cell {{user.last_name}}
+									+e.TD.cell {{user.first_name}}
+									+e.TD.cell {{user.patronymic_name}}
+									+e.TD.cell {{user.discount}}%
+
+						+e.UL.pagination(ng-class="{'tables__pagination--isInvisible' : renderUsers.count }")
+							+e.pagination-item(data="{{pagItem}}",
+								ng-repeat="pagItem in renderUsers.pags",
+								ng-click="renderUsers.getUsers($event); renderUsers.select(pagItem)",
+								ng-class="{'tables__pagination-item--isActive': renderUsers.isActive(pagItem)}"
+							) {{pagItem}}
+
+							//-
+								each i in [1,2,3,4,5]
+									+e.pagination-item(data= i,
+									ng-click="renderUsers.select($event); renderUsers.getUsers($event)",
+									ng-class="{'tables__pagination-item--isActive': renderUsers.isActive(index)}"
+									)= i

@@ -52,14 +52,22 @@ gulp.task('sass', function() {
 });
 
 //js compile
+//gulp.task('scripts', function() {
+//	return gulp.src([
+//			paths.blocks + '**/*.js',
+//			'!' + paths.blocks + '_assets/**/*.js'
+//		])
+//		.pipe(concat('main.js'))
+//		.pipe(gulp.dest(paths.devDir + 'js/'))
+//		.pipe(browserSync.stream());
+//});
 gulp.task('scripts', function() {
 	return gulp.src([
-			paths.blocks + '**/*.js', 
-			'!' + paths.blocks + '_assets/**/*.js'
-		])
-		.pipe(concat('main.js'))
-		.pipe(gulp.dest(paths.devDir + 'js/'))
-		.pipe(browserSync.stream());
+		paths.blocks + 'components/**/*.js',
+		'!' + paths.blocks + '_assets/**/*.js'
+	])
+	  .pipe(gulp.dest(paths.devDir + 'js/'))
+	  .pipe(browserSync.stream());
 });
 
 //watch
@@ -109,28 +117,6 @@ gulp.task('imgBuild', ['clean'], function() {
 gulp.task('fontsBuild', ['clean'], function() {
 	return gulp.src(paths.devDir + '/fonts/*')
 		.pipe(gulp.dest(paths.outputDir + 'fonts/'));
-});
-
-//ftp
-gulp.task('send', function() {
-	var conn = ftp.create({
-		host:     '77.120.110.166',
-		user:     'alexlabs',
-		password: 'Arj4h00F9x',
-		parallel: 5
-	});
-
-	/* list all files you wish to ftp in the glob variable */
-	var globs = [
-		'interact.agency/**/*',
-		'!node_modules/**' // if you wish to exclude directories, start the item with an !
-	];
-
-	return gulp.src( globs, { base: '.', buffer: false } )
-		.pipe( conn.newer( '/' ) ) // only upload newer files
-		.pipe( conn.dest( '/' ) )
-		.pipe(notify("Dev site updated!"));
-
 });
 
 

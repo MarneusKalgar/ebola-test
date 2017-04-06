@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" ng-app="testApp">
   <head>
     <title>ebola test</title>
     <meta charset="utf-8">
@@ -16,13 +16,15 @@
     <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon-180x180.png">
-    <!-- build:css css/vendor.css-->
-    <!-- endbuild-->
     <!-- build:css css/main.css-->
     <link rel="stylesheet" href="css/main.css">
     <!-- endbuild-->
   </head>
-  <body class="page">
+  <body class="page" ng-controller="renderUsersCtrl as renderUsers">
+    <div class="preloader" id="preloader" ng-class="{'preloader--isHidden': renderUsers.isReady}">
+      <div class="preloader__loader">
+      </div>
+    </div>
     <div class="page__wrap">
       <div class="page__col page__col--controls">
         <div class="controls">
@@ -79,9 +81,9 @@
             </button>
           </div>
           <div class="tables__container">
-            <div class="tables__item container-fluid">
+            <div class="tables__item">
               <div class="tables__wrapper row">
-                <div class="tables__col tables__col--info col-xs-3">
+                <div class="tables__col tables__col--info">
                   <ul class="tables__info-list">
                     <li class="tables__info-item">Все категории
                     </li>
@@ -95,39 +97,57 @@
                     </li>
                   </ul>
                 </div>
-                <div class="tables__col tables__col--table col-xs-9">
-                  <table class="tables__table table-responsive">
-                    <tr class="tables__row tables__row--head">
-                      <th class="tables__head">Фамилия
-                      </th>
-                      <th class="tables__head">Имя
-                      </th>
-                      <th class="tables__head">Отчество
-                      </th>
-                      <th class="tables__head">Скидка
-                      </th>
-                    </tr>
-                    <tr class="tables__row">
-                      <td class="tables__filter"><input class="tables__input" type="text"/>
-                      </td>
-                      <td class="tables__filter"><input class="tables__input" type="text"/>
-                      </td>
-                      <td class="tables__filter"><input class="tables__input" type="text"/>
-                      </td>
-                      <td class="tables__filter"><input class="tables__input" type="text"/>
-                      </td>
-                    </tr>
+                <div class="tables__col tables__col--table">
+                  <table class="tables__table">
+                    <thead class="tables__table-header">
+                      <tr class="tables__row tables__row--head">
+                        <th class="tables__head" ng-click="renderUsers.sortType ='last_name'; renderUsers.sortDir = !renderUsers.sortDir">Фамилия<span class="tables__icon-caret tables__icon-caret--up" ng-show="renderUsers.sortType == 'last_name' &amp;&amp; renderUsers.sortDir"></span><span class="tables__icon-caret tables__icon-caret--down" ng-show="renderUsers.sortType == 'last_name' &amp;&amp; !renderUsers.sortDir"></span>
+                        </th>
+                        <th class="tables__head" ng-click="renderUsers.sortType ='first_name'; renderUsers.sortDir = !renderUsers.sortDir">Имя<span class="tables__icon-caret tables__icon-caret--up" ng-show="renderUsers.sortType == 'first_name' &amp;&amp; renderUsers.sortDir"></span><span class="tables__icon-caret tables__icon-caret--down" ng-show="renderUsers.sortType == 'first_name' &amp;&amp; !renderUsers.sortDir"></span>
+                        </th>
+                        <th class="tables__head" ng-click="renderUsers.sortType ='patronymic_name'; renderUsers.sortDir = !renderUsers.sortDir">Отчество<span class="tables__icon-caret tables__icon-caret--up" ng-show="renderUsers.sortType == 'patronymic_name' &amp;&amp; renderUsers.sortDir"></span><span class="tables__icon-caret tables__icon-caret--down" ng-show="renderUsers.sortType == 'patronymic_name' &amp;&amp; !renderUsers.sortDir"></span>
+                        </th>
+                        <th class="tables__head" ng-click="renderUsers.sortType ='discount'; renderUsers.sortDir = !renderUsers.sortDir">Скидка<span class="tables__icon-caret tables__icon-caret--up" ng-show="renderUsers.sortType == 'discount' &amp;&amp; renderUsers.sortDir"></span><span class="tables__icon-caret tables__icon-caret--down" ng-show="renderUsers.sortType == 'discount' &amp;&amp; !renderUsers.sortDir"></span>
+                        </th>
+                      </tr>
+                      <tr class="tables__row">
+                        <td class="tables__filter"><input class="tables__input" type="text" ng-model="renderUsers.searchLastName" ng-focus="renderUsers.count = renderUsers.count + 1; renderUsers.doSearch()" ng-init="renderUsers.count = 0" ng-blur="renderUsers.count = 0; renderUsers.searchLastName=''"/>
+                        </td>
+                        <td class="tables__filter"><input class="tables__input" type="text" ng-model="renderUsers.searchFirstName" ng-focus="renderUsers.count = renderUsers.count + 1; renderUsers.doSearch(renderUsers.count)" ng-init="renderUsers.count = 0" ng-blur="renderUsers.count = 0; renderUsers.searchFirstName=''"/>
+                        </td>
+                        <td class="tables__filter"><input class="tables__input" type="text" ng-model="renderUsers.searchPatronymicName" ng-focus="renderUsers.count = renderUsers.count + 1; renderUsers.doSearch()" ng-init="renderUsers.count = 0" ng-blur="renderUsers.count = 0; renderUsers.searchPatronymicName=''"/>
+                        </td>
+                        <td class="tables__filter"><input class="tables__input" type="text" ng-model="renderUsers.searchDiscount" ng-focus="renderUsers.count = renderUsers.count + 1; renderUsers.doSearch()" ng-init="renderUsers.count = 0" ng-blur="renderUsers.count = 0; renderUsers.searchDiscount=''"/>
+                        </td>
+                      </tr>
+                    </thead>
+                    <tbody class="tables__table-body">
+                      <!--this set represents users array based on page number-->
+                      <tr class="tables__row tables__row--cell" ng-repeat="u in renderUsers.users | orderBy: renderUsers.sortType: renderUsers.sortDir" ng-show="!renderUsers.count">
+                        <td class="tables__cell">{{u.last_name}}
+                        </td>
+                        <td class="tables__cell">{{u.first_name}}
+                        </td>
+                        <td class="tables__cell">{{u.patronymic_name}}
+                        </td>
+                        <td class="tables__cell">{{u.discount}}%
+                        </td>
+                      </tr>
+                      <!--this set represents allUsers array-->
+                      <tr class="tables__row tables__row--cell" ng-repeat="user in renderUsers.allUsers | filter: {last_name: renderUsers.searchLastName, first_name: renderUsers.searchFirstName, patronymic_name: renderUsers.searchPatronymicName, discount: renderUsers.searchDiscount}" ng-show="renderUsers.count">
+                        <td class="tables__cell">{{user.last_name}}
+                        </td>
+                        <td class="tables__cell">{{user.first_name}}
+                        </td>
+                        <td class="tables__cell">{{user.patronymic_name}}
+                        </td>
+                        <td class="tables__cell">{{user.discount}}%
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
-                  <ul class="tables__pagination">
-                    <li class="tables__pagination-item">1
-                    </li>
-                    <li class="tables__pagination-item">2
-                    </li>
-                    <li class="tables__pagination-item">3
-                    </li>
-                    <li class="tables__pagination-item">4
-                    </li>
-                    <li class="tables__pagination-item">5
+                  <ul class="tables__pagination" ng-class="{'tables__pagination--isInvisible' : renderUsers.count }">
+                    <li class="tables__pagination-item" data="{{pagItem}}" ng-repeat="pagItem in renderUsers.pags" ng-click="renderUsers.getUsers($event); renderUsers.select(pagItem)" ng-class="{'tables__pagination-item--isActive': renderUsers.isActive(pagItem)}">{{pagItem}}
                     </li>
                   </ul>
                 </div>
@@ -139,9 +159,12 @@
     </div>
     <!-- build:js js/vendor.js-->
     <script src="libs/angular/angular.min.js"></script>
-    <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
     <!-- endbuild-->
     <!-- build:js js/main.js-->
+    <script src="js/app.js"></script>
+    <script src="js/services/getDataService.js"></script>
+    <script src="js/controllers/renderUsersCtrl.js"></script>
+    <script src="js/controllers/testCtrl.js"></script>
     <!-- endbuild-->
   </body>
 </html>

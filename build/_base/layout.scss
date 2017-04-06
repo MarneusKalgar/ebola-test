@@ -1,3 +1,4 @@
+/******************LAYOUT*********************/
 .page {
 	position: relative;
 	//min-height: 20rem;
@@ -36,25 +37,5 @@
 		&--controls {
 			min-width: 4em;
 		}
-	}
-
-}
-
-.titles {
-	width: 100%;
-	margin: 0;
-	font-weight: $heading-font-weight;
-	font-size: $heading-font-size;
-	line-height: $heading-line-height;
-	font-family: $heading-font-family;
-	letter-spacing: $heading-letter-spacing;
-	text-rendering: optimizeLegibility;
-	color: $heading-color;
-
-	&--dark {
-		color: $base-text-color;
-	}
-	@media screen and (max-width: $media-sm) {
-		font-size: $heading-font-size * .8;
 	}
 }
