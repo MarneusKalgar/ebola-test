@@ -4,6 +4,9 @@
 	height: 100%;
 	padding: 1% 1em 0;
 	background: $base-color-grey;
+	@include media("<=$media-sm") {
+		padding: 1em .5em;
+	}
 
 		//tabs
 	&__tabs {
@@ -77,6 +80,12 @@
 		&:first-child {
 			border-right: 1px solid $base-color-grey;
 		}
+		&:hover,
+		&:focus {
+			.tables__icon {
+				fill: lighten($base-text-color, 30%);
+			}
+		}
 	}
 
 	&__icon {
@@ -86,13 +95,26 @@
 		width: 1em;
 		height: 1em;
 		transform: translate(-50%, -50%);
-		background: $base-text-color;
+		fill: $base-text-color;
+
+		&--isInfo {
+			top: .2em;
+			left: -1.1em;
+			width: .9em;
+			height: .9em;
+			transform: translate(0,0);
+		}
+
+		&--isSubItem {
+			top: .3em;
+			width: .8em;
+			height: .8em;
+			fill: darken($base-color-grey, 50%);
+		}
 	}
 
 		//container
 	&__container {
-		//height: 85%;
-		//height: 35em;
 		width: 100%;
 		margin-top: 1%;
 		align-self: stretch;
@@ -108,6 +130,9 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: stretch;
+		@include media("<$media-md") {
+			flex-direction: column;
+		}
 	}
 
 	&__col {
@@ -129,19 +154,53 @@
 				height: 100%;
 				border-right: 1px solid $base-text-color;
 			}
+			@include media("<$media-lg") {
+				width: 20%;
+			}
+			@include media("<=$media-md") {
+				width: 100%;
+				&::after {
+					display: none;
+				}
+			}
 		}
 
 		&--table {
 			width: 73%;
 			table-layout: fixed;
-			//overflow-y: auto;
+			@include media("<$media-lg") {
+				width: 78%;
+			}
+			@include media("<=$media-md") {
+				width: 100%;
+				margin-top: 1em;
+			}
+			@include media("<=$media-xxs") {
+				overflow-y: auto;
+			}
 		}
 	}
 
+		//info-list
 	&__info-list {
 		margin: 0;
-		padding: 0 1em;
+		padding: 0 .3em 0 1.7em;
 		list-style-type: none;
+	}
+
+	&__info-item {
+		position: relative;
+		cursor: pointer;
+	}
+
+	&__info-sublist {
+		margin: 0;
+		padding: 0 0 0 1em;
+		list-style-type: none;
+	}
+
+	&__info-subitem {
+		position: relative;
 	}
 
 
@@ -149,6 +208,9 @@
 		width: 100%;
 		border-collapse: collapse;
 		//table-layout: fixed;
+		@include media("<=$media-xxs") {
+			width: 29.3em;
+		}
 	}
 
 	&__table-header {
@@ -165,7 +227,14 @@
 		height: 24em;
 		margin-top: .5em;
 		padding-right: 1em;
-		overflow: auto;
+		overflow-y: auto;
+		overflow-x: hidden;
+		@include media("height>=900px") {
+			height: 34em;
+		}
+		@include media("<=$media-md") {
+			height: auto;
+		}
 	}
 	
 	&__row {
@@ -173,7 +242,7 @@
 		display: flex;
 
 		&--cell {
-
+			width: 103%;
 		}
 
 		&--head {
@@ -192,9 +261,6 @@
 		}
 	}
 
-	&__filter {
-		padding: 0 .3em;
-	}
 
 	&__head {
 		position: relative;
@@ -222,6 +288,11 @@
 		&--down{
 			transform: translateY(-50%) rotateZ(180deg);
 		}
+	}
+
+	&__filter {
+		padding: 0 .3em;
+		width: 25%;
 	}
 
 	&__cell {
@@ -269,7 +340,6 @@
 
 		&--isActive {
 			color: $base-color-decor;
-			transform: scale(1.2);
 		}
 	}
 

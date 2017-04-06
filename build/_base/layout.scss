@@ -1,8 +1,7 @@
 /******************LAYOUT*********************/
 .page {
 	position: relative;
-	//min-height: 20rem;
-	min-height: 100vh;
+	min-height: 305px;
 	min-width: 305px;
 	max-width: 1920px;
 	margin: 0 auto;
@@ -25,6 +24,9 @@
 		justify-content: flex-start;
 		align-items: stretch;
 		overflow: hidden;
+		@include media("<=$media-xs") {
+			flex-direction: column;
+		}
 	}
 
 	&__col {
