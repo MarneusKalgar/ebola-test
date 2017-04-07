@@ -1,16 +1,16 @@
-#Ebola test
+# Ebola test
 The test-app for Ebola Agency
 
-##Demo
+## Demo
 [userlistapp](http://userlistapp.surge.sh/)
 
-##Quick start
+## Quick start
 
 * Install dev-dependencies `npm i`
 * Launch `gulp` to run watchers, server and compilers
 * Launch `gulp production` to minify files for production
 
-##Directory Layout
+## Directory Layout
 
 	test                        # Project root
 	├── /build/                 # Source files
