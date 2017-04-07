@@ -113,18 +113,13 @@ gulp.task('imgBuild', ['clean'], function() {
 		.pipe(gulp.dest(paths.outputDir + 'img/'));
 });
 
-//copy fonts outputDir
-gulp.task('fontsBuild', ['clean'], function() {
-	return gulp.src(paths.devDir + '/fonts/*')
-		.pipe(gulp.dest(paths.outputDir + 'fonts/'));
-});
 
 
 //develop
 gulp.task('develop', ['browser-sync', 'watch', 'pug', 'sass', 'scripts']);
 
 //production
-gulp.task('production', ['build', 'imgBuild', 'fontsBuild']);
+gulp.task('production', ['build', 'imgBuild']);
 
 //default
 gulp.task('default', ['develop']);

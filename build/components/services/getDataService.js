@@ -1,16 +1,18 @@
 (function () {
 	"use strict";
 	
-	function getDataService($q, $http) {
-
+	function getDataService($http) {
+		var initUsers;
+		var users;
+		
 		return {
 			getInitUsers: getInitUsers,
 			getUsers: getUsers,
 			getAllUsers: gerAllUsers
 		};
-		var initUsers;
-		var users;
 
+
+		//get initial set of users
 		function getInitUsers() {
 			var promise = $http({
 				method: "GET",
@@ -24,6 +26,7 @@
 			return promise;
 		}
 
+		//get the set of users based on page number
 		function getUsers(id) {
 			var promise = $http({
 				method: "GET",
@@ -37,6 +40,7 @@
 			return promise;
 		}
 
+		//get the all users set
 		function gerAllUsers() {
 			var promise = $http({
 				method: "GET",
@@ -49,11 +53,9 @@
 			});
 			return promise;
 		}
-
-		//return dataService;
 	}
 
 	angular.module('testApp')
-	  .factory('getDataService', ['$q', '$http', getDataService]);
+	  .factory('getDataService', ['$http', getDataService]);
 
 })();

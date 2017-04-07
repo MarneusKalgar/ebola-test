@@ -23,8 +23,6 @@
 
 		//get initial set of users
 		vm.getInitUsers = function() {
-
-			console.log("fire");
 			var askForPromise = getDataService.getInitUsers();
 
 			askForPromise.then(
@@ -71,21 +69,20 @@
 			return vm.selected === item;
 		};
 
-		//search
+		//do user filtration
 		vm.doSearch = function() {
+			preload(500);
 			vm.getAllUsers();
 		};
 
 		//get the all users set
 		vm.getAllUsers = function() {
 			var askForPromise = getDataService.getAllUsers();
-
 			askForPromise.then(
 			  function(response) {
 				  vm.allUsers = response.data.data;
 				  vm.success = true;
 				  console.log("coming from service", vm.users);
-				  preload(300);
 			  },
 			  function(reason) {
 				  vm.reason = reason;
