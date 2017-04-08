@@ -27,6 +27,8 @@ html(lang="ru", ng-app="testApp")
 		link(rel="apple-touch-icon", sizes="152x152", href="img/favicon/apple-touch-icon-152x152.png")
 		link(rel="apple-touch-icon", sizes="180x180", href="img/favicon/apple-touch-icon-180x180.png")
 
+		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto")
+
 		// build:css css/main.css
 		link(rel="stylesheet", href="css/main.css")
 		// endbuild
@@ -41,16 +43,16 @@ html(lang="ru", ng-app="testApp")
 			+e.DIV.col(class="--tables")
 				+tables()
 
-		// build:js js/vendor.js
-		script( src="libs/angular/angular.min.js" )
+		// build:js js/vendor.js defer
+		script( defer src="libs/angular/angular.min.js" )
 		//-
 			script( src="libs/angular-route/angular-route.min.js" )
 			script( src="libs/angular-ui-router/release/angular-ui-router.js" )
 		// endbuild
 
 
-		// build:js js/main.js
-		script( src="js/app.js")
-		script( src="js/services/getDataService.js")
-		script( src="js/controllers/renderUsersCtrl.js")
+		// build:js js/main.js defer
+		script( defer src="js/app.js")
+		script( defer src="js/services/getDataService.js")
+		script( defer src="js/controllers/renderUsersCtrl.js")
 		// endbuild
