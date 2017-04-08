@@ -105,7 +105,7 @@ mixin tables
 									+e.TD.cell {{user.discount}}%
 
 						+e.UL.pagination(ng-class="{'tables__pagination--isInvisible' : renderUsers.count }")
-							+e.pagination-item(data="{{pagItem}}",
+							+e.pagination-item(data-index="{{pagItem}}",
 								ng-repeat="pagItem in renderUsers.pags",
 								ng-click="renderUsers.getUsers($event); renderUsers.select(pagItem)",
 								ng-class="{'tables__pagination-item--isActive': renderUsers.isActive(pagItem)}"

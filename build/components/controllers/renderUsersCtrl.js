@@ -42,7 +42,7 @@
 
 		//get the set of users based on page number
 		vm.getUsers = function(obj) {
-			var index = obj.target.attributes.data.value;
+			var index = obj.target.attributes["data-index"].value;
 			console.log(index);
 			var askForPromise = getDataService.getUsers(index);
 

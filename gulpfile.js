@@ -5,6 +5,7 @@ var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
 	plumber = require('gulp-plumber'),
+	htmlify = require('gulp-angular-htmlify'),
 	rename = require('gulp-rename'),
 	prefix = require('gulp-autoprefixer'),
 	imagemin = require('gulp-imagemin'),
@@ -34,6 +35,7 @@ gulp.task('pug', function() {
 	return gulp.src([paths.blocks + '*.pug', '!' + paths.blocks + 'template.pug' ])
 		.pipe(plumber())
 		.pipe(pug({pretty: true}))
+		.pipe(htmlify())
 		.pipe(gulp.dest(paths.devDir))
 		.pipe(browserSync.stream())
 });
